@@ -1,0 +1,93 @@
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>listadoCentrales</title>
+        <meta charset="utf-8"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    </head>
+    <body>
+        <header th:replace="/pages/plantilla :: cabecera"></header>
+        <div class="bg-primary bg-opacity-25 m-3 p-3 text-center">
+            <h2>Listado Centrales:</h2>
+        </div>
+            <nav th:replace="/pages/plantilla :: navegacion"></nav>
+        <main>
+
+            <hr/>
+            <main>
+                <div class="card-group shadow bg-primary bg-opacity-25">
+                    <a  class="btn btn-outline-primary" href="/centrales">Listado-Centrales</a>
+                    <a  class="btn btn-outline-primary" href="/centrales/fecha">Antes de 1975</a>
+                    <a  class="btn btn-outline-primary" href="/centrales/activas">Activas</a>
+                </div>
+            </main>
+            <hr>
+            <p></p>
+            <hr/>
+            <div class="card card-group">
+
+
+                    <div class="container-fluid">
+                        <div class="row mt-5">
+                            <div class="col">
+                                <div class="col-12 col-md-10 col-lg-6">
+                                    <div class="card-group">
+                                        <div th:each="central : ${lista}" class="card shadow m-3" style="width: 18rem;">
+                                            <img th:src="${central.imagen}" class="card-img-top"
+                                                 th:alt="${'Imagen de la central nuclear' + central.descripcion}" alt="">
+                                            <div class="card-body">
+                                                <h5 class="card-title" th:text="${central.descripcion}">Nombre central</h5>
+                                                <ul class="list list-group mt-2">
+                                                    <li>
+                                                        <span class="float-start fw-bold">Provincia</span>
+                                                        <span class="float-end" th:text="${central.idProvincia}"></span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="float-start fw-bold">IdTipo</span>
+                                                        <span class="float-end" th:text="${central.idTipo}"></span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="float-start fw-bold">Potencia</span>
+                                                        <span class="float-end" th:text="${central.potencia}"></span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="float-start fw-bold">Inicio</span>
+                                                        <span class="float-end"
+                                                              th:text="${#temporals.format(central.inicio, 'dd/MMM/yyyy')}"></span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="float-start fw-bold">Fin</span>
+                                                        <span class="float-end"
+                                                              th:text="${#temporals.format(central.fin, 'dd/MMM/yyyy')}"></span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="float-start fw-bold">Activa</span>
+                                                        <span class="float-end" th:text="${central.activa}"><i
+                                                                class="bi bi-power"
+                                                                th:classappend="${central.activa ? 'bg-text-success' : 'bg-text-danger'}"></i></span>
+                                                    </li>
+
+                                                </ul>
+                                                <a th:href="${'https://google.com/maps/place/' + central.latitud + ',' + central.longitud}"
+                                                   target="_blank" class="btn btn-outline-primary mt-2"><i
+                                                        class="bi bi-pin-angle"></i>Ver ubicación</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <hr/>
+            </div>
+        </main>
+        <footer th:replace="/pages/plantilla :: pie-pagina">
+
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+                crossorigin="anonymous"></script>
+    </body>
+</html>
