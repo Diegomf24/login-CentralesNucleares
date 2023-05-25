@@ -27,6 +27,7 @@ public class UserController {
             return "login";
         } else {
             session.setAttribute("userValido", userValido);
+            session.setAttribute("idSession", session.getId());
             return "index";
         }
 
