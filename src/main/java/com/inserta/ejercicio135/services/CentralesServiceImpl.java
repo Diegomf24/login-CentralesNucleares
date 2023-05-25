@@ -1,6 +1,7 @@
 package com.inserta.ejercicio135.services;
 
 import com.inserta.ejercicio135.models.Central;
+import com.inserta.ejercicio135.models.Tipo;
 import com.inserta.ejercicio135.repos.CentralesRepo;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +22,6 @@ public class CentralesServiceImpl implements CentralesService{
         return centralesRepo.findAll();
     }
 
-    @Override
-    public List<Central> findByIdTipo(int idTipo) {
-        return centralesRepo.findByIdTipo(idTipo);
-    }
 
     @Override
     public List<Central> findByInicioLessThan(LocalDateTime fecha) {
@@ -36,6 +33,10 @@ public class CentralesServiceImpl implements CentralesService{
         return centralesRepo.findByActivaTrue();
     }
 
+    @Override
+    public List<Central> findByTipoo(Tipo tipo) {
+        return centralesRepo.findByTipo(tipo);
+    }
 
 
 }

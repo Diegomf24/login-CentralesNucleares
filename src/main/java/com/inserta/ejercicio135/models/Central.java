@@ -11,14 +11,18 @@ public class Central {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int idTipo;
+    @ManyToOne
+    @JoinColumn(name = "id_tipo", referencedColumnName = "id")
+    private Tipo tipo;
     private int potencia;
     private boolean activa;
     private String latitud;
     private String longitud;
     private String descripcion;
     private String imagen;
-    private String idProvincia;
+    @ManyToOne
+    @JoinColumn(name = "id_provincia", referencedColumnName = "id")
+    private Provincia provincia;
     private String observaciones;
     private LocalDateTime inicio;
     private LocalDateTime fin;

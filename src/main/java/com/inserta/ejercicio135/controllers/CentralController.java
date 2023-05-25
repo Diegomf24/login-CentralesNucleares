@@ -1,6 +1,7 @@
 package com.inserta.ejercicio135.controllers;
 
 import com.inserta.ejercicio135.models.Central;
+import com.inserta.ejercicio135.models.Tipo;
 import com.inserta.ejercicio135.services.CentralesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,20 +31,17 @@ public class CentralController {
     }
 
     //Mostrar las centrales de tipo X:
-    @GetMapping("/tipo/{wee}")
-    public String tipo(Model model, @PathVariable Integer wee){
-        List<Central> tipo1 = centralesService.findByIdTipo(wee);
+    @GetMapping("/tipo/{id}")
+    public String tipo(Model model, @PathVariable Integer id){
+        Tipo tipo = new Tipo();
+        tipo.setId(id);
+        List<Central> tipo1 = centralesService.findByTipoo(tipo);
         model.addAttribute("lista", tipo1);
         return "pages/listado-centrales";
     }
 
     //Mostrar las centrales de tipo X:
-    @GetMapping("/tipo")
-    public String tipo1(Model model){
-        List<Central> tipo1 = centralesService.findByIdTipo(1);
-        model.addAttribute("lista", tipo1);
-        return "pages/listado-centrales";
-    }
+
 
     @GetMapping("/activas")
     public String activa(Model model){

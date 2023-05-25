@@ -9,7 +9,9 @@ import lombok.*;
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private  int idRol;
+    @ManyToOne
+    @JoinColumn(name = "id_rol", referencedColumnName = "id")
+    private  Rol rol;
     private String nombre;
     private String clave;
     private String correo;
